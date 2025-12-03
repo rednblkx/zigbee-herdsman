@@ -76,7 +76,7 @@ export const COMMANDS = {
     
     // Permit Joining
     ZGP_COMMISSIONING_ENTER: (seconds: number) => `[Zgp,CommissioningEnter,False,${seconds}]`,
-    ZDP_PERMIT_JOINING: (seconds: number) => `[Zdp,SendMgmtPermitJoiningReq,B=0xFFFC.0,${seconds},0]`,
+    ZDP_PERMIT_JOINING: (seconds: number, nwkAddr?: number) => `[Zdp,SendMgmtPermitJoiningReq,${nwkAddr ? `S=0x${nwkAddr.toString(16).padStart(4, '0')}.0` : 'B=0xFFFC.0'},${seconds},0]`,
     
     // ZDO Commands
     ZDP_NODE_DESC_REQ: (addr: number, seq: number) => 

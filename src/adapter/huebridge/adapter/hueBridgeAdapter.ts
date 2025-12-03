@@ -546,7 +546,7 @@ export class HueBridgeAdapter extends Adapter {
     async permitJoin(seconds: number, networkAddress?: number): Promise<void> {
         await this.queue.execute(COMMANDS.ZGP_COMMISSIONING_ENTER(seconds), (msg) => msg.type === 'unknown');
 
-        await this.queue.execute(COMMANDS.ZDP_PERMIT_JOINING(seconds), (msg) => msg.type === 'joinPermitted');
+        await this.queue.execute(COMMANDS.ZDP_PERMIT_JOINING(seconds, networkAddress), (msg) => msg.type === 'joinPermitted');
     }
 
     async sendZclFrameToEndpoint(
