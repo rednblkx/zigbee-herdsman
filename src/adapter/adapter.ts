@@ -97,6 +97,11 @@ export abstract class Adapter extends events.EventEmitter<AdapterEventMap> {
 
                 return new EZSPAdapter(networkOptions, serialPortOptions, backupPath, adapterOptions);
             }
+            case "huebridge": {
+                const {HueBridgeAdapter} = await import("./huebridge/adapter/hueBridgeAdapter.js");
+
+                return new HueBridgeAdapter(networkOptions, serialPortOptions, backupPath, adapterOptions);
+            }
             default: {
                 throw new Error(`Adapter '${discovered.adapter}' does not exists, possible options: zstack, ember, deconz, zigate, zboss, zoh, ezsp`);
             }
